@@ -1,16 +1,18 @@
 #config_loader.py
-from logger import get_logger
+from .logger import get_logger
+import os
+from typing import Optional
 import yaml
 
 logger = get_logger(__name__)
 
-def load_folder_structure(template: str = "default", path: str = "config/folders.yaml") -> list:
+def load_folder_structure(template: str = "default", path: Optional[str] = None) -> list:
     """
     Loads a folder structure configuration from a YAML file.
 
     Args:
         template (str): The template name to retrieve from the configuration. Defaults to "default".
-        path (str): The path to the YAML configuration file. Defaults to "config/folders.yaml".
+        path (str): The path to the YAML configuration file. Defaults to None, which uses the package's folders.yaml.
 
     Returns:
         list: The folder structure configuration for the specified template.
@@ -21,6 +23,9 @@ def load_folder_structure(template: str = "default", path: str = "config/folders
     """
     result = []
     try:
+        if path is None:
+            path = os.path.join(os.path.dirname(__file__), "..", "config", "folders.yaml")
+            path = os.path.abspath(path)
         logger.info(f"Loading folder structure from {path} using template '{template}'")
         with open(path, 'r') as file:
             config = yaml.safe_load(file)
