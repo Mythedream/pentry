@@ -1,0 +1,12 @@
+default:
+  - notes
+  - recon
+  - scans
+  - vulns
+  - loot
+  - exploits
+  - screenshots
+  - reports
+  - tools
+  - scripts
+
