@@ -4,9 +4,9 @@ import argparse
 from datetime import datetime 
 import os
 
-from pentry.utils.config_loader import load_folder_structure
-from pentry.utils.create_directory import create_directory
-from pentry.utils.logger import get_logger
+from .utils.config_loader import load_folder_structure
+from .utils.create_directory import create_directory
+from .utils.logger import get_logger
 
 logger = get_logger("pentry")
 
